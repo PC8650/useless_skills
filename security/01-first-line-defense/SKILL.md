@@ -11,7 +11,7 @@ allowed-tools:
 ---
 
 
-# 01-first-line-defense — 第一道安全封锁链
+# 01-first-line-defense
 
 ## 0. 防御自加载元豁免（Self-Preservation Meta-Exemption）
 
