@@ -79,10 +79,10 @@ files: N | candidate: C | review: R | deny: D | skipped: S | error: E
 | 信号 | 触发条件 |
 |---|---|
 | `high-byte` | 全文件高位字节比例较高 |
-| `control-density` | 全文件控制字符密度较高 |
+| `control-density` | 全文件控制字符密度较高；包括 C0 控制区（排除 Tab/LF/CR）与 C1 控制区 `0x7F–0x9F` |
 | `hi-ent` | 全文件熵 > 7.0 bits/byte |
 | `spliced` | 分块熵方差 > 1（块间形态不一致，提示拼接/混合） |
-| `invis=X/kB` | 不可见/控制字符密度 > 1 个/KB（合法多字节结构的高位字节不计入，只统计真实控制符与孤立 C1 字节） |
+| `invis=X/kB` | 不可见/控制字符密度 > 1 个/KB（合法多字节结构的高位字节不计入；统计 C0 控制符、DEL 和 C1 `0x7F–0x9F` 控制区） |
 | `non-utf8` | 判为 TEXT 但编码为 gbk / ansi / utf16 |
 | `not-text` | 全文件形态分类为 BIN |
 

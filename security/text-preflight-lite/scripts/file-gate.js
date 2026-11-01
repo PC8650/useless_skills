@@ -169,7 +169,7 @@ function scanFull(path, size) {
         if ((b >= 0x20 && b <= 0x7E) || b === 9 || b === 10 || b === 13 || b >= 0xA0) state.ansi++;
         if (b === 0) state.nul++;
         if (b >= 0x80) state.high++;
-        if (b < 0x20 && b !== 9 && b !== 10 && b !== 13) state.controls++;
+        if ((b < 0x20 && b !== 9 && b !== 10 && b !== 13) || (b >= 0x7F && b <= 0x9F)) state.controls++;
       }
       chunkH = histEntropy(chunkHist, chunk.length);
       state.chunkCount++;

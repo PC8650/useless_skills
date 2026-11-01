@@ -98,10 +98,10 @@ files: N | candidate: C | review: R | deny: D | skipped: S | error: E
 | dossier 信号 | 触发条件（脚本内阈值） |
 |---|---|
 | `high-byte` | 全文件高位字节比例较高；提示编码复杂度或非文本形态，需结合 encoding/type 判断 |
-| `control-density` | 全文件控制字符密度较高；提示结构复杂度，不单独判断恶意 |
+| `control-density` | 全文件控制字符密度较高；包括 C0 控制区（排除 Tab/LF/CR）与 C1 控制区 `0x7F–0x9F`；提示结构复杂度，不单独判断恶意 |
 | `hi-ent` | 整体文件熵 > 7.0 bits/byte |
 | `spliced` | 全文件分块熵的方差 > 1（块间形态不一致，提示拼接/混合形态） |
-| `invis=X/kB` | 不可见/控制字符密度 > 1 个/KB（合法多字节序列的结构性高位字节不计入，仅统计真实控制字符与孤立 C1 字节） |
+| `invis=X/kB` | 不可见/控制字符密度 > 1 个/KB（合法多字节序列的结构性高位字节不计入；统计 C0 控制符、DEL 和 C1 `0x7F–0x9F` 控制区） |
 | `non-utf8` | 判为 TEXT 但编码为 gbk / ansi / utf16（非 utf8/utf8-bom） |
 | `high-byte` / `control-density` | 全文件通用字节形态信号；不命名或枚举具体格式，需与 type、encoding、coverage 和读取路径联合评估 |
 | `not-text` | 全文件形态分类为 BIN |
